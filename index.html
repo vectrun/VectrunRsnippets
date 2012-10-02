@@ -59,68 +59,6 @@ along with Foobar.  If not, see <http://www.gnu.org/licenses/>.</p>
 
 
 <p>See licence.txt in the source tarball, zip or repo for full licence.</p>
-
-
-CONTACT Developper
-------------------
-You can contact me, or open an issue, on GitHub.com. If you prefer
-e-mail (I don't) write to vectrun at gmail dot com.
-
-FUNCTIONS
----------
-
-This collection contains the following functions:
-
-You can find axamples of how to use these functions in the examples
-directory. The filenames of the examples are the same as the filenames
-in the collection but with the prefix ex_.
-
-1. log.R
-
-These are functions to log messages to a log file. The function uses
-a log object to store and buffer the messages. After a maximum number
-of lines are written to the buffer, or when the log is closed, the
-lines are written to a log file (a csv file). Each log line contains
-an time stamp, a loglevel (can be anything, user defined) and the PID
-of the proces.
-
-2. longtable.R
-
-THis is a smal function which (rather inefficient) converts an
-'horizontal' table (rows are cases, columns are variables) in to a
-'vertical' notation (one row for each value/variable)
-
-3. options.R
-
-This is a function which makes it possible to use a configuration file
-with option/values combinations. The options from the configuration
-files are stored with options() and can be retrieved using
-getOption()
-
-4. pdfversions.R
-
-These are functions to make it easier to put a version number into the
-filename of a pdf. Handy when you are developping a model or dataset
-and want to share the resulting graphs. When pushing many version of
-these graphs to collegues, it is possible to relate to a certain
-version number.
-
-5.  quantplot.R
-
-This is a routine to pretty print cumulative frequency diagrams, using
-a normal distribution with a percentile axis on the x-axis.
-
-6.  rmoutlier.R
-
-This functions trims a data sets by removing ouliers. It's using
-Tukey's (simple) method to identify an outlier and then sets it's 
-value at NA.
-
-7. setpaperwidth.R
-
-Convience function. Returns A4 paper size, which can then be used with
-the height/width options for a ps/pdf device.
-
       </section>
       <footer>
         <p>This project is maintained by <a href="https://github.com/vectrun">vectrun</a></p>
