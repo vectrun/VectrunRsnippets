@@ -1,7 +1,7 @@
 ######################################################################
 # VectrunRsnippets
 #
-# options.R: read options() from file using option/value pairs
+# example for instalFromGitHub.R
 #  
 # http://vectrun.github.com/VectrunRsnippets
 #
@@ -33,33 +33,17 @@
 # No need for RTFM. Use the source, Luke!
 #
 
+source("../installFromGitHub.R")
 
-setOptions <- function(optiontable) {
-	opts <- list()
-	for (i in 1:nrow(optiontable)) {
-		o <- optiontable$value[i]
-		if(!is.na(suppressWarnings(as.numeric(as.character(o)))))
-		{
-			o <- as.numeric(o)
-		} else {
-			o <- as.character(o)
-		}
-		opts[[as.character(optiontable$option[i])]]<-o
-	}
-	options(opts)
-}
+# in this example we download and install the 'localoptions' package
+# from my 'localoptions' repo
 
-readOptions <- function(file) {
+# set username, get url for the repo
+git.user <- "vectrun"
+git.url <- githubUrl(repo="localoptions",username=git.user)
 
-	if(!file.exists(file)) {
-		msg<-paste("option file",file,"not found")
-		stop(msg)
-	}
+# download and install package
+installUrl(url=git.url)
 
-	o <- read.table(file,col.name=c("option","value"))
-	setOptions(o)
-	invisible(o)
-}
-
-
+######################################################################
 

@@ -40,8 +40,21 @@
 
 # improved list of objects
 .ls.objects <- function (pos = 1, pattern, order.by,
-						 decreasing=FALSE,
+						 decreasing=TRUE,
 						 head=FALSE, n=5) {
+	# this functions lists objects in memory in order of decreasing
+	# memory size.
+	#
+	# options:
+	# pos: which environment to use for listing, see 'pos' option of
+	# ls()
+	# pattern: only list objects containing this pattern (character)
+	# order.by: order by which field.
+	# decreasing: use decreasing order
+	# head: use head() for printing 
+	# n: how many lines should be printed
+	# 
+
 	napply <- function(names, fn) sapply(names, function(x) fn(get(x, pos
 																   = pos)))
 	names <- ls(pos = pos, pattern = pattern)
@@ -64,7 +77,9 @@
 		out <- out[order(out[[order.by]],
 						 decreasing=decreasing), ]
 	if (head)
-		out <- head(out, n) out
+		out <- head(out, n) 
+
+	out
 }
 
 # shorthand
