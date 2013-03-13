@@ -99,7 +99,7 @@ value at NA.
 
 7. setpaperwidth.R
 
-Convience function. Returns A4 paper size, which can then be used with
+Convenience function. Returns A4 paper size, which can then be used with
 the height/width options for a ps/pdf device.
 
 8. lsObjects.R
@@ -107,3 +107,6 @@ Function which lists the objects in memory and show the memory size
 and row/columns. All in a pretty table.
 See http://stackoverflow.com/questions/1358003/tricks-to-manage-the-available-memory-in-an-r-session for the source of this function
 
+9. extSysInfo.R
+Convenience function, prints system information using Sys.info() and
+sessioninfo()
