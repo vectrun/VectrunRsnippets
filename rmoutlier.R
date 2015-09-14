@@ -37,40 +37,44 @@
 
 
 rmoutlier<-function (x,factor=1.5,na.rm=FALSE) {
-# Use Tukey's method for marking outliers as NA, which are values larger or
-# smaller than 1.5 (factor) the inter quantile range plus or minus 
-# quantile 2 or 4. NA values are not removed by default and will
-# result in a error.
-    nna <- is.na(x);
-    if (any(nna)&&!na.rm) {
-	stop("NA's found but na.rm=FALSE");
-    }
-    stats <- stats::fivenum(x, na.rm = na.rm);
-    iqr <- diff(stats[c(2, 4)]);
-    if (factor <= 0) {
-	stop("'factor' must not be <= 0");
-    }else {
-	out <- x < (stats[2] - factor * iqr) |
-	    x > (stats[4] +  factor * iqr);
-	if (any(out[nna],na.rm=TRUE)){
-	    stats[c(1, 5)] <- range(x[!out], na.rm = TRUE);
+	# Use Tukey's method for marking outliers as NA, which are values larger or
+	# smaller than 1.5 (factor) the inter quantile range (IQR) plus or minus 
+	# quantile 2 or 4. NA values are not removed by default and will
+	# result in a error.
+	# options:
+	# x: vector with numeric values
+	# factor: IQR factor
+	# na.rm: remove NA values
+	nna <- is.na(x);
+	if (any(nna)&&!na.rm) {
+		stop("NA's found but na.rm=FALSE");
 	}
-	x[out]<-NA;
-    }
-    return(x);
+	stats <- stats::fivenum(x, na.rm = na.rm);
+	iqr <- diff(stats[c(2, 4)]);
+	if (factor <= 0) {
+		stop("'factor' must not be <= 0");
+	}else {
+		out <- x < (stats[2] - factor * iqr) |
+		x > (stats[4] +  factor * iqr);
+		if (any(out[nna],na.rm=TRUE)){
+			stats[c(1, 5)] <- range(x[!out], na.rm = TRUE);
+		}
+		x[out]<-NA;
+	}
+	return(x);
 }
 
 rmoutlierdf<-function(data,factor=1.5,na.rm=FALSE, verbose=F) {
-#removes outliers from each column in a data.frame
-    if (verbose) { cat("Removing outliers \n")}
-    for (i in 1:ncol(data)) {
-	if (verbose) {cat (".")}
-	if (is.numeric(data[,i])){
-	    data[,i]<-rmoutlier(x=data[,i],factor=factor,na.rm=na.rm);
+	#removes outliers from each column in a data.frame
+	if (verbose) { cat("Removing outliers \n")}
+	for (i in 1:ncol(data)) {
+		if (verbose) {cat (".")}
+		if (is.numeric(data[,i])){
+			data[,i]<-rmoutlier(x=data[,i],factor=factor,na.rm=na.rm);
+		}
 	}
-    }
-    if (verbose) { cat("\nDone!\n")}
-    return(data);
+	if (verbose) { cat("\nDone!\n")}
+	return(data);
 
 }
 
