@@ -2,7 +2,7 @@
 ######################################################################
 # VectrunRsnippets
 #  
-# rmse: calculate Root Mean Square Error, with of without outliers
+# rmse: calculate Root Mean Square Error, with or without outliers
 #
 # http://vectrun.github.com/VectrunRsnippets
 #
